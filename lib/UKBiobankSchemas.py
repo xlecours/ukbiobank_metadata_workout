@@ -197,7 +197,8 @@ class UKBiobankSchemas:
         subproject = self.__subprojects[field['instance_id']]
         instances = []
         for x in range(int(field['instance_min']), int(field['instance_max'])):
-            instances.append(subproject['visits'].get(str(x)).get('title'))
+            title = subproject.get('visits', {}).get(str(x), {}).get('title', None)
+            instances.append(title)
         
   
         return {
